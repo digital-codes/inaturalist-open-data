@@ -10,7 +10,7 @@ The iNaturalist Open Dataset is one of the world’s largest public datasets of 
 
 The iNaturalist Open Dataset is structured as a "bucket" of images stored using the Simple Storage Server (S3) provided by Amazon Web Service (AWS). Each photo has multiple versions resized to different maximum dimensions so users can download the size most useful to their use case.
 
-To summarize the contents of the iNaturalist Open Dataset, we include data for four tab-separated CSV files representing observations, observers, photos, and taxa (the organisms that are the subject of the observations). These files are a snapshot of iNaturalist observations and will be generated monthly. But iNaturalist is continuously changing as people add and remove observations and photos, or as new identifications change our understanding of the taxa the observations represent. That means there may be photos in the Open Dataset not represented as rows in these tables. There may also be rows in these tables pointing to images that are no longer in the bucket having been deleted or moved.
+To summarize the contents of the iNaturalist Open Dataset, we include data for six tab-separated CSV files representing observations, observers, photos, taxa (the organisms that are the subject of the observations), and projects (joined through observations_projects). These files are a snapshot of iNaturalist observations and will be generated monthly. But iNaturalist is continuously changing as people add and remove observations and photos, or as new identifications change our understanding of the taxa the observations represent. That means there may be photos in the Open Dataset not represented as rows in these tables. There may also be rows in these tables pointing to images that are no longer in the bucket having been deleted or moved.
 
 The overall structure of the S3 bucket looks like this:
 
@@ -29,6 +29,8 @@ The overall structure of the S3 bucket looks like this:
   - observers.csv.gz
   - photos.csv.gz
   - taxa.csv.gz
+  - obsservations_projects.csv.gz
+  - projects.csv.gz
 ```
 
 The available image sizes and maximum dimensions are:
@@ -43,9 +45,8 @@ square - exactly 75x75px, cropped to be square
 ```
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/2f16935c-1166-4cc8-82c7-6ce0e33bd892" width="600px">
+  <img src="https://github.com/user-attachments/assets/98b68fe8-7dc2-40e6-90c1-b8e97804db08" width="600px">
 </p>
-
 
 The **photo_id** and **extension** can be used to fetch the appropriate photo files from among the tens of millions in the iNaturalist Open Dataset. The file path in the S3 bucket is `s3://inaturalist-open-data/photos/[photo_id]/medium.[extension]`, and the file URL is `https://inaturalist-open-data.s3.amazonaws.com/photos/[photo_id]/medium.[extension]`.
 
